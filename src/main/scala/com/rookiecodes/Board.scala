@@ -35,6 +35,6 @@ class Board {
   }
 }
 
-newBoard = new Board()
+var newBoard = new Board()
 newBoard.move(0, Marker.CROSS)
 

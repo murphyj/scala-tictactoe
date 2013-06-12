@@ -1,6 +1,5 @@
 package com.rookiecodes
 
-import com.rookiecodes.Marker._
 
 class Tile(var marker:Marker) {
 
