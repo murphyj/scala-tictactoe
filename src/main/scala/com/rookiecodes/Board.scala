@@ -2,36 +2,35 @@ package com.rookiecodes
 
 import com.rookiecodes.Marker._
 
+
 class Board {
   // array to store the board state
-  var currentBoard = List(new Tile(Marker.EMPTY), new Tile(Marker.EMPTY), new Tile(Marker.EMPTY),
-                   new Tile(Marker.EMPTY), new Tile(Marker.EMPTY), new Tile(Marker.EMPTY),
-                   new Tile(Marker.EMPTY), new Tile(Marker.EMPTY), new Tile(Marker.EMPTY))
+  var tiles = List.fill(9) { new Tile(Marker.EMPTY); }
 
-  var winningMoves = ((0, 1, 2), (3, 4, 5), (6, 7, 8),
-                       (0, 3, 6), (1, 4, 7), (2, 5, 8),
-                       (0, 4, 8), (2, 4, 6)
-                     )
-
-  // checkMove
+  var winningMoves =
+                List(
+                      (0, 1, 2), (3, 4, 5), (6, 7, 8),
+                      (0, 3, 6), (1, 4, 7), (2, 5, 8),
+                      (0, 4, 8), (2, 4, 6)
+                    )
 
   def hasWon(marker: Marker) {
-     for (move <- 0 until winningMoves.length) {
-       if (move._1 === marker &&
-           move._2 === marker &&
-           move._3 === marker) {
-         return true
-       }
-     }
+    for(move <- winningMoves) {
+      if (move._1 == marker &&
+          move._2 == marker &&
+          move._3 == marker) {
+        return true
+      }
+    }
     return false
   }
 
   def move(position: Int, marker: Marker) {
-    currentBoard.get(position).setMarker(marker)
+    tiles(position).setMarker(marker)
   }
 
   def initialiseBoard() {
-      currentBoard.foreach { tile =>
+      for(tile <- tiles) {
           tile.setMarker(Marker.EMPTY)
       }
   }
